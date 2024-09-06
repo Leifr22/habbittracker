@@ -1,0 +1,78 @@
+{% extends 'habit/base.html' %}
+{% block title %}
+    My Habits
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <h1>Мои привычки</h1>
+
+    <!-- Отображение сообщений об успехе или ошибке -->
+    {% if messages %}
+    <div class="alert alert-info">
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Список привычек пользователя -->
+    <ul class="list-group">
+        {% for habit in habits %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+                <h5>{{ habit.name }}</h5>
+                <p>{{ habit.description }}</p>
+                <small>Started on: {{ habit.start_date }}</small>
+            </div>
+             <div class="d-flex flex-column">
+                <!-- Календарь выполнения -->
+                <div class="mb-2">
+                    <h6>Прогресс:</h6>
+                    <div class="calendar d-flex flex-wrap">
+                        {% for tracker in habit.trackers.all %}
+                        <div class="day p-1 m-1
+                            {% if tracker.completed %}
+                                bg-success
+                            {% else %}
+                                bg-light
+                            {% endif %}
+                        ">
+                            {{ tracker.date|date:"d M" }} -
+                            {% if tracker.completed %}
+                                ✓
+                            {% else %}
+                                ✗
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            <div>
+                <!-- Ссылки на редактирование и удаление привычки -->
+                <a href="{% url 'update_habit' habit.pk %}" class="btn btn-primary btn-sm">Edit</a>
+                <a href="{% url 'delete_habit' habit.pk %}" class="btn btn-danger btn-sm"
+                   onclick="return confirm('Are you sure you want to delete this habit?');">Delete</a>
+                {% if habit.is_completed_today %}
+                    <span class="badge bg-success">Выполнено сегодня</span>
+                {% else %}
+                    <form action="{% url 'mark_habit_complete' habit.id today_date %}" method="post" class="d-inline-block">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-success btn-sm">Отметить сегодня</button>
+                    </form>
+                {% endif %}
+            </div>
+        </li>
+        {% empty %}
+        <li class="list-group-item">
+            <p>No habits found. <a href="{% url 'habit_add' %}">Create a new habit</a></p>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Кнопка для создания новой привычки -->
+    <div class="mt-4">
+        <a href="{% url 'habit_add' %}" class="btn btn-success">Add New Habit</a>
+    </div>
+</div>
+{% endblock content %}
