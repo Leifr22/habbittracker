@@ -1,11 +1,12 @@
 from django.contrib import admin
 from django.urls import path, include, re_path
+from django.views.decorators.cache import cache_page
 
 from habits import views
-from habits.views import mark_habit_complete, HabitAPIView, HabitDetailView
+from habits.views import mark_habit_complete, HabitAPIView, HabitDetailView, HabitsList
 
 urlpatterns = [
-    path('',views.HabitsList.as_view(),name='home'),
+    path('',cache_page(60)(HabitsList.as_view()),name='home'),
     path('habit_form/',views.HabitCreationView.as_view(),name='habit_add'),
     path('update/<int:pk>',views.UpdateHabitsView.as_view(),name='update_habit'),
     path('habit/delete/<int:pk>/', views.HabitDeleteView.as_view(), name='delete_habit'),
