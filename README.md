@@ -11,7 +11,38 @@
 ✔️ **Простой интерфейс** – удобный и интуитивно понятный дизайн  
 
 ## 🛠 Установка  
+
 1. **Клонируйте репозиторий:**  
    ```bash
    git clone https://github.com/Leifr22/habbittracker.git
    cd habbittracker
+   ```
+
+2. **Убедитесь, что у вас установлен Docker.**  
+
+3. **Создайте виртуальное окружение и установите зависимости:**  
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # Для Windows используйте venv\Scripts\activate
+   pip install -r requirements.txt
+   ```
+
+4. **Выполните миграции базы данных:**  
+   ```bash
+   python manage.py migrate
+   ```
+
+5. **Запустите проект с помощью Docker:**  
+   ```bash
+   docker-compose up --build
+   ```
+
+6. **Или запустите локальный сервер разработки:**  
+   ```bash
+   python manage.py runserver
+   ```
+
+7. **Откройте приложение в браузере:**  
+   ```
+   http://127.0.0.1:8000
+   ```
