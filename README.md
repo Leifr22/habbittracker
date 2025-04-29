@@ -1,48 +1,53 @@
-# 📊 Habit Tracker  
+```markdown
+# Habit Tracker
 
-## 📌 Описание  
-**Habit Tracker** — это проект, созданный для отслеживания ежедневных привычек.  
-Приложение помогает пользователям поддерживать мотивацию и сохранять последовательность в выполнении своих привычек.  
+📌 **Description**  
+Habit Tracker is a project designed to track daily habits.  
+The application helps users stay motivated and maintain consistency in completing their habits.
 
-## 🚀 Функционал  
-✔️ **Регистрация/Авторизация** – безопасная аутентификация пользователей  
-✔️ **Управление привычками** – добавление, обновление и удаление привычек  
-✔️ **Ежедневное отслеживание** – отметка выполненных привычек и мониторинг прогресса  
-✔️ **Простой интерфейс** – удобный и интуитивно понятный дизайн  
+---
 
-## 🛠 Установка  
+## 🚀 **Features**  
+- ✔️ **Registration/Authentication** — secure user authentication  
+- ✔️ **Habit Management** — add, update, and delete habits  
+- ✔️ **Daily Tracking** — mark completed habits and monitor progress  
+- ✔️ **Simple Interface** — user-friendly and intuitive design  
 
-1. **Клонируйте репозиторий:**  
+---
+
+## 🛠 **Installation**
+
+1. **Clone the repository:**
    ```bash
    git clone https://github.com/Leifr22/habbittracker.git
    cd habbittracker
    ```
 
-2. **Убедитесь, что у вас установлен Docker.**  
+2. **Ensure Docker is installed.**
 
-3. **Создайте виртуальное окружение и установите зависимости:**  
+3. **Create a virtual environment and install dependencies:**
    ```bash
    python -m venv venv
-   source venv/bin/activate  # Для Windows используйте venv\Scripts\activate
+   source venv/bin/activate  # For Windows use venv\Scripts\activate
    pip install -r requirements.txt
    ```
 
-4. **Выполните миграции базы данных:**  
+4. **Apply database migrations:**
    ```bash
    python manage.py migrate
    ```
 
-5. **Запустите проект с помощью Docker:**  
+5. **Start the project using Docker:**
    ```bash
    docker-compose up --build
    ```
 
-6. **Или запустите локальный сервер разработки:**  
+   Or start the local development server:
    ```bash
    python manage.py runserver
    ```
 
-7. **Откройте приложение в браузере:**  
-   ```
-   http://127.0.0.1:8000
-   ```
+6. **Open the application in your browser:**  
+   [http://127.0.0.1:8000](http://127.0.0.1:8000)
+
+
